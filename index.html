@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiftaHub | خدمات الصيانة والتركيب في عمان</title>
+    
+    <!-- خط 'Cairo' لدعم اللغة العربية بشكل عصري -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- مكتبة الأيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* المتغيرات الأساسية للألوان */
+        :root {
+            --primary-color: #0056b3; /* أزرق احترافي */
+            --primary-dark: #004494;
+            --secondary-color: #25D366; /* أخضر واتساب */
+            --accent-color: #ff9f1c; /* برتقالي للتمييز */
+            --bg-light: #f4f7f6;
+            --text-dark: #2c3e50;
+            --text-gray: #636e72;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --radius: 16px;
+            --transition: all 0.3s ease;
+        }
+
+        /* الإعدادات العامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- الهيدر والقائمة --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .cta-btn-nav {
+            background-color: var(--primary-color);
+            color: var(--white) !important;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+        }
+
+        .cta-btn-nav:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* --- قسم الهيرو (الرئيسي) --- */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .main-cta-btn {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .main-cta-btn:hover {
+            background-color: #1ebc57;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        /* --- الأقسام العامة --- */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- الخدمات (البطاقات) --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 5px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-top-color: var(--primary-color);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .service-list li {
+            margin-bottom: 8px;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-list li i {
+            color: var(--accent-color);
+            font-size: 0.8rem;
+        }
+
+        .service-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: 700;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .service-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* --- قسم من نحن --- */
+        .about-section {
+            background-color: var(--white);
+        }
+        
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        /* --- نموذج الطلب --- */
+        .form-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            border-radius: var(--radius);
+            padding: 60px 40px;
+            margin-top: 40px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: none;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .submit-btn:hover {
+            background-color: #e68a00;
+        }
+
+        /* --- التقييمات --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .stars {
+            color: #f1c40f;
+            margin-bottom: 15px;
+        }
+
+        .client-name {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 15px;
+        }
+
+        /* --- الفوتر --- */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* --- زر الواتساب العائم --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* --- Media Queries للجوال --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .form-section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- زر الواتساب العائم -->
+    <a href="https://wa.me/962792948651" class="whatsapp-float" target="_blank" aria-label="تواصل معنا عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- الهيدر -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-tools"></i> LiftaHub
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#services">خدماتنا</a></li>
+                    <li><a href="#about">من نحن</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                    <li><a href="#request" class="cta-btn-nav">اطلب الخدمة</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- الصفحة الرئيسية (Hero) -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>اطلب أي خدمة بسهولة — <br> <span style="color: var(--primary-color);">LiftaHub</span> يوصلك خلال أقل من 24 ساعة</h1>
+            <p>منصة LiftaHub للخدمات المنزلية في عمان. صيانة، تشطيبات، تنظيف، والمزيد. كل ما تحتاجه بضغطة زر.</p>
+            <button onclick="scrollToForm()" class="main-cta-btn">
+                <i class="fas fa-paper-plane"></i> اطلب الخدمة الآن
+            </button>
+        </div>
+    </section>
+
+    <!-- قسم الخدمات -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدماتنا المميزة</h2>
+                <p>نغطي كافة احتياجات منزلك في عمان</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- 1. الصيانة -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-hammer"></i></div>
+                    <h3>الصيانة المنزلية</h3>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> كهرباء</li>
+                        <li><i class="fas fa-check"></i> سباكة (مواسير)</li>
+                        <li><i class="fas fa-check"></i> نجارة وحدادة</li>
+                        <li><i class="fas fa-check"></i> جميع أنواع الصيانة</li>
+                    </ul>
+                    <button onclick="scrollToForm('الصيانة المنزلية')" class="service-btn">اطلب الخدمة الآن</button>
+                </div>
+
+                <!-- 2. التشطيبات -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-paint-roller"></i></div>
+                    <h3>التشطيبات والديكور</h3>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> دهان</li>
+                        <li><i class="fas fa-check"></i> جبس بورد</li>
+                        <li><i class="fas fa-check"></i> تركيب بلاط</li>
+                        <li><i class="fas fa-check"></i> أعمال الديكور</li>
+                    </ul>
+                    <button onclick="scrollToForm('التشطيبات والديكور')" class="service-btn">اطلب الخدمة الآن</button>
+                </div>
+
+                <!-- 3. التنظيف -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-broom"></i></div>
+                    <h3>خدمات التنظيف</h3>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> تنظيف منازل شامل</li>
+                        <li><i class="fas fa-check"></i> تنظيف الحدائق</li>
+                        <li><i class="fas fa-check"></i> غسيل سيارات</li>
+                        <li><i class="fas fa-check"></i> تعقيم</li>
+                    </ul>
+                    <button onclick="scrollToForm('خدمات التنظيف')" class="service-btn">اطلب الخدمة الآن</button>
+                </div>
+
+                <!-- 4. التكييف -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-snowflake"></i></div>
+                    <h3>التكييف والتبريد</h3>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> تركيب مكيفات</li>
+                        <li><i class="fas fa-check"></i> صيانة مكيفات</li>
+                        <li><i class="fas fa-check"></i> تنظيف وغسيل</li>
+                        <li><i class="fas fa-check"></i> تعبئة فريون</li>
+                    </ul>
+                    <button onclick="scrollToForm('التكييف والتبريد')" class="service-btn">اطلب الخدمة الآن</button>
+                </div>
+
+                <!-- 5. تركيب الأجهزة -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-tv"></i></div>
+                    <h3>تركيب الأجهزة</h3>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> تركيب شاشات</li>
+                        <li><i class="fas fa-check"></i> تركيب ستلايت</li>
+                        <li><i class="fas fa-check"></i> كاميرات مراقبة</li>
+                        <li><i class="fas fa-check"></i> أجهزة منزلية</li>
+                    </ul>
+                    <button onclick="scrollToForm('تركيب الأجهزة')" class="service-btn">اطلب الخدمة الآن</button>
+                </div>
+
+                <!-- 6. نقل الأثاث -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-truck-loading"></i></div>
+                    <h3>نقل الأثاث</h3>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> فك وتركيب غرف</li>
+                        <li><i class="fas fa-check"></i> نقل عفش</li>
+                        <li><i class="fas fa-check"></i> تغليف الأثاث</li>
+                    </ul>
+                    <button onclick="scrollToForm('نقل الأثاث')" class="service-btn">اطلب الخدمة الآن</button>
+                </div>
+
+                <!-- 7. إضافية -->
+                <div class="service-card" style="border-top-color: var(--accent-color);">
+                    <div class="service-icon" style="color: var(--accent-color);"><i class="fas fa-plus-circle"></i></div>
+                    <h3>خدمات إضافية</h3>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> أي طلب صيانة خاص</li>
+                        <li><i class="fas fa-check"></i> خدمات منزلية حسب الحاجة</li>
+                        <li><i class="fas fa-check"></i> استشارات هندسية</li>
+                    </ul>
+                    <button onclick="scrollToForm('خدمات إضافية')" class="service-btn" style="color: var(--accent-color);">اطلب الخدمة الآن</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم من نحن -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>من نحن</h2>
+            </div>
+            <div class="about-content">
+                <p><strong>LiftaHub</strong> هي وجهتك الأولى في عمان لكل ما يتعلق بخدمات المنزل. نؤمن بأن وقتك ثمين، لذلك نسعى لتوفير حلول سريعة، موثوقة، وفعالة من حيث التكلفة.</p>
+                <p>فريقنا متخصص في التعامل مع كافة التفاصيل بدقة، من الإصلاحات البسيطة إلى المشاريع الكبيرة. هدفنا هو راحة بالك ورضا تام بالخدمة.</p>
+                <div style="display: flex; gap: 20px; justify-content: center; margin-top: 30px;">
+                    <div style="text-align: center;">
+                        <h3 style="font-size: 2.5rem; color: var(--primary-color);">+24</h3>
+                        <p>ساعة استجابة</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <h3 style="font-size: 2.5rem; color: var(--primary-color);">100%</h3>
+                        <p>ضمان الجودة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- آراء العملاء -->
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>آراء عملائنا في LiftaHub</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"خدمة ممتازة وسريعة، فريق LiftaHub محترف جداً في تركيب المكيفات. أنصح بهم بشدة."</p>
+                    <div class="client-name">أحمد الخالدي</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                    <p>"طلبت تنظيف البيت، والنتيجة كانت مذهلة. الأسعار معقولة جداً مقارنة بالسوق."</p>
+                    <div class="client-name">سارة محمد</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"سهولة التعامل والسرعة في الاستجابة هو ما يميز LiftaHub. شكراً لكم."</p>
+                    <div class="client-name">خالد الزعبى</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- نموذج طلب الخدمة -->
+    <section id="request">
+        <div class="container">
+            <div class="form-section">
+                <div class="section-title" style="margin-bottom: 30px;">
+                    <h2 style="color: var(--white); border-color: var(--white);">اطلب خدمتك الآن</h2>
+                    <p style="color: rgba(255,255,255,0.8);">سيتم الرد عليك فوراً عبر واتساب</p>
+                </div>
+
+                <div class="form-container">
+                    <form id="serviceForm" onsubmit="sendToWhatsapp(event)">
+                        <div class="form-group">
+                            <label>نوع الخدمة</label>
+                            <select id="serviceType" class="form-control" required>
+                                <option value="" disabled selected>اختر نوع الخدمة...</option>
+                                <option value="الصيانة المنزلية">الصيانة المنزلية</option>
+                                <option value="التشطيبات والديكور">التشطيبات والديكور</option>
+                                <option value="خدمات التنظيف">خدمات التنظيف</option>
+                                <option value="التكييف والتبريد">التكييف والتبريد</option>
+                                <option value="تركيب الأجهزة">تركيب الأجهزة</option>
+                                <option value="نقل الأثاث">نقل الأثاث</option>
+                                <option value="خدمات إضافية">خدمات إضافية</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>الموقع (المنطقة في عمان)</label>
+                            <!-- تم تصحيح الكلمة هنا إلى صويفيه -->
+                            <input type="text" id="location" class="form-control" placeholder="مثال: عبدون، صويفيه، تلاع العلي..." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>رقم الهاتف</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="07xxxxxxxx" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>وقت مناسب للخدمة</label>
+                            <input type="text" id="time" class="form-control" placeholder="مثال: غداً صباحاً، أو عطلة نهاية الأسبوع">
+                        </div>
+
+                        <div class="form-group">
+                            <label>وصف الطلب</label>
+                            <textarea id="description" class="form-control" placeholder="اشرح لنا المشكلة أو الخدمة المطلوبة باختصار..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fab fa-whatsapp"></i> إرسال الطلب عبر واتساب
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>LiftaHub</h4>
+                    <p>شريكك الموثوق لكل الخدمات المنزلية في عمان. نضمن لك الجودة والسرعة.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#services">الخدمات</a></li>
+                        <li><a href="#about">من نحن</a></li>
+                        <li><a href="#request">طلب خدمة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <ul class="contact-info">
+                        <li><i class="fab fa-whatsapp" style="color: var(--secondary-color);"></i> 0792948651</li>
+                        <li><i class="fas fa-map-marker-alt" style="color: var(--primary-color);"></i> عمان، الأردن</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة © 2023 LiftaHub</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // دالة التمرير السلس للنموذج
+        function scrollToForm(serviceName) {
+            const formSection = document.getElementById('request');
+            formSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // إذا تم تحديد اسم خدمة من البطاقات، قم بتحديده في القائمة المنسدلة
+            if (serviceName) {
+                const select = document.getElementById('serviceType');
+                // محاولة مطابقة النص
+                for (let i = 0; i < select.options.length; i++) {
+                    if (select.options[i].value === serviceName) {
+                        select.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // دالة إرسال البيانات إلى واتساب
+        function sendToWhatsapp(e) {
+            e.preventDefault();
+
+            // جمع البيانات من النموذج
+            const serviceType = document.getElementById('serviceType').value;
+            const location = document.getElementById('location').value;
+            const phone = document.getElementById('phone').value;
+            const time = document.getElementById('time').value;
+            const description = document.getElementById('description').value;
+
+            // رقم الهاتف الخاص بالموقع (مع رمز الدولة 962)
+            const whatsappNumber = "962792948651";
+
+            // تنسيق الرسالة
+            let message = `*طلب خدمة جديد - LiftaHub* %0a%0a`;
+            message += `🛠 *نوع الخدمة:* ${serviceType} %0a`;
+            message += `📍 *الموقع:* ${location} %0a`;
+            message += `📱 *رقم الهاتف:* ${phone} %0a`;
+            if(time) message += `⏰ *الوقت المناسب:* ${time} %0a`;
+            message += `📝 *الوصف:* ${description}`;
+
+            // إنشاء الرابط
+            const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+            // فتح الرابط في نافذة جديدة
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
